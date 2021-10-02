@@ -60,7 +60,7 @@ namespace MT_Number1
             Console.Clear(); //เคลียร์หน้าต่าง
             PrintHeaderPlayGame();//เรียกใช้ medthod ที่ชื่อว่า PrintHeaderPlayGame เป็นmedthod ที่ใช้ในการแสดงข้อความของหน้าเล่นเกม
             PrintIncorectScore(-1);//เรียกใช้ medthod ที่ชื่อว่า  PrintIncorectScore() เป็นmedthod ที่ใช้ในการแสดงข้อความและค่าจำนวนครั้งที่ผู้ใช้ตอบผิด
-            CheckRandomword(PrintRandomWord());//เรียกใช้ medthod ที่ชื่อว่า  PrintIncorectScore() เป็นmedthod ที่ใช้ในการแสดงข้อความและค่าจำนวนครั้งที่ผู้ใช้ตอบผิด
+            CheckRandomword(PrintRandomWord());//เรียกใช้ medthod ที่ชื่อว่า  CheckRandomword() เป็นmedthod ที่ใช้ในการแสดงข้อความและค่าจำนวนครั้งที่ผู้ใช้ตอบผิด
         }
 
         static void PrintHeaderPlayGame()
@@ -71,20 +71,20 @@ namespace MT_Number1
         }
         static void PrintIncorectScore(int i)
         {
-            Console.WriteLine("Incorrect Score : {0}",i+1);
-            
+            Console.WriteLine("Incorrect Score : {0}", i + 1);
+
         }
         static Word PrintRandomWord()
         {
             Random random = new Random(); //สร้างตัวแปรชื่อrandom เป็นประเภท Random
-           int resultRandom = random.Next(1,3); //random ตัวเลข1-3
+            int resultRandom = random.Next(1, 3); //random ตัวเลข1-3
             Word wordrandom = (Word)resultRandom; //สร้างตัวแปรชื่อwordrandom เป็นประเภท Word เก็ยค่าคำตอบของการแรนด้อมเป็นประเภท Word
             return wordrandom; //คืนค่าตัวแปร wordrandom
         }
         static void CheckRandomword(Word wordrandom)
         {
             if (wordrandom == Word.Tennis)//เทียบค่า wordrandom ว่ามีค่าเท่ากับ Enum Word.Tennis(ค่าเท่ากับ1)หรือไม่
-            {            
+            {
                 ShowBlankOfRandomWord("Tennis");//ถ้าใช่ให้เรียกใช้ method ชื่อ  ShowBlankOfRandomWord() ซึ่งเป็น medthod ที่ใช้ในการแสดงช่องว่าง
             }
             else if (wordrandom == Word.Football)//เทียบค่า wordrandom ว่ามีค่าเท่ากับ Enum Word.Football(ค่าเท่ากับ1)หรือไม่
@@ -95,7 +95,7 @@ namespace MT_Number1
             {
                 ShowBlankOfRandomWord("Badminton");//ถ้าใช่ให้เรียกใช้ method ชื่อ  ShowBlankOfRandomWord() ซึ่งเป็น medthod ที่ใช้ในการแสดงช่องว่าง
             }
-          
+
         }
         static void ShowBlankOfRandomWord(string currentword)
         {
@@ -109,66 +109,60 @@ namespace MT_Number1
             Console.WriteLine();//เว้นบรรทัด
             Console.WriteLine();//เว้นบรรทัด
 
-            InputLetterAlphabetFromKeyBoard(currentword,Blanks);/*เรียกใช้ medthod ที่ชื่อว่า InputLetterAlphabetFromKeyBoard() เป็นmedthod
+            InputLetterAlphabetFromKeyBoard(currentword, Blanks);/*เรียกใช้ medthod ที่ชื่อว่า InputLetterAlphabetFromKeyBoard() เป็นmedthod
                                                                    ที่ใช้ในการรับค่าตัวอักษรที่ผู้ใช้กรอกเพื่อเล่น*/
         }
-        static void InputLetterAlphabetFromKeyBoard(string currentword,char[] currentblanks)
+        static void InputLetterAlphabetFromKeyBoard(string currentword, char[] currentblanks)
         {
             string word = currentword; //สร้างตัวแปรประเภท string ชื่อ word มาเก็บค่าของคำที่แรนด้อมได้
             Console.Write("Input letter alphabet : "); //แสดงข้อความ Input letter alphabet : 
             string inputletter = Console.ReadLine(); //รับค่าตัวอักษรที่ผู้ใช้กรอกและเก็บไว้ในตัวแปรinputletter
 
-            CheckCorrectLetter(inputletter, word,currentblanks);/*เรียกใช้ medthod ที่ชื่อว่า CheckCorrectLetter() เป็นmedthod
+            CheckCorrectLetter(inputletter, word, currentblanks);/*เรียกใช้ medthod ที่ชื่อว่า CheckCorrectLetter() เป็นmedthod
                                                                    ที่ใช้ในตรวจสอบคำตอบที่ถูกต้อง*/
         }
-        static void CheckCorrectLetter(string inputletter,string word,char[] currentblanks)
+        static void CheckCorrectLetter(string inputletter, string word, char[] currentblanks)
         {
-            
+            Console.Clear();
+            PrintHeaderPlayGame();//เรียกใช้ medthod ชื่อ  PrintHeaderPlayGame() เป็น medthod ที่ใช้แสดงข้อความที่บอกว่าเป็นหน้าเล่นเกม
+            PrintIncorectScore(-1);//เรียกใช้ medthod ชื่อ  PrintIncorectScore(0) เป็น medthod ที่ใช้แสดงจำนวนที่ผู้ใช้ตอบผิด
             char[] letter = word.ToCharArray(); //สร้างตัวแปรอาร์เรย์ของตัวอักษรชื่อ letter ซึ่งจะเก็บตัวอักษรของคำที่แรนด้อมได้มา
             char[] NewGuessWord = currentblanks; //สร้างตัวแปรอาร์เรย์ของตัวอักษรชื่อ NewGuessWord ซึ่งจะเก็บตัวอักษรของช่องว่างที่เท่ากับจำนวนของอักษรของคำที่แรนด้อมได้
             char[] guessletter = inputletter.ToCharArray(); //สร้างตัวแปรอาร์เรย์ชองตัวอักษรชื่อ guessletter ซึ่งจะเก็บตัวอักษรที่ผู้ใช้กรอกมา
-            Console.Clear(); //เคลียร์หน้าต่าง
-            PrintHeaderPlayGame(); //เรียกใช้ medthod ที่ชื่อว่า PrintHeaderPlayGame เป็นmedthod ที่ใช้ในการแสดงข้อความของหน้าเล่นเกม
-            PrintIncorectScore(-1); //เรียกใช้ medthod ที่ชื่อว่า  PrintIncorectScore() เป็นmedthod ที่ใช้ในการแสดงข้อความและค่าจำนวนครั้งที่ผู้ใช้ตอบผิด
             for (int i = 0; i < word.Length; i++) //ใช้ loop for วนจนกว่าค่าiจะเท่ากับค่าความยาวของคำที่แรนด้อมได้
             {
-                    if (guessletter[0] == letter[i]) //ตรวจสอบถ้าตัวอักษรที่ผู้ใช้กรอกมาตรงกับอาร์เรย์ตัวที่iของletter(ตัวแปรที่เก็บตัวอักษรของคำที่แรนด้อม)หรือไม่
+                if (guessletter[0] == letter[i]) //ตรวจสอบถ้าตัวอักษรที่ผู้ใช้กรอกมาตรงกับอาร์เรย์ตัวที่iของletter(ตัวแปรที่เก็บตัวอักษรของคำที่แรนด้อม)หรือไม่
                 {
                     Console.Write(guessletter); //ถ้าใช่ให้แสดงตัวอักษรนั้นออกมา
                     NewGuessWord[i] = guessletter[0]; //นำตัวอักษรที่ผู้ใช้กรอกมาแทนที่ส่งไปในช่องว่างที่ i ของข้อความช่องว่าง
                     Console.Write(" ");//เว้นวรรค
                 }
                 else if (guessletter[0] != letter[i])//แต่ถ้าไม่ใช่
-                    {
+                {
                     NewGuessWord[i] = NewGuessWord[i]; //ให้แทนที่ค่าช่องว่างที่ i ด้วยตัวของมันเอง หรือหมายความว่าช่องว่างไม่เปลี่ยนแปลง
-                    Console.Write("{0} ",NewGuessWord[i]);//แสดงช่องว่างที่i
+                    Console.Write("{0} ", NewGuessWord[i]);//แสดงช่องว่างที่i
                 }
             }
 
-            Console.Write(NewGuessWord);//แสดงทุกตัวอักษรที่ตัวแปร NewGuessWord เก็บไว้่ ตัวนี้คือค่าที่ผู้ใช้ตอบถูกครั้งล่าสุด
             string newGuessWord = new string(NewGuessWord);//แปลงตัวแปรNewGuessWord จาก char[] ให้เป็น string และเก็บไว้ในตัวแปร newGuessWord
             string currentblank = new string(currentblanks);//แปลงตัวแปร currentblanks จาก char[] ให้เป็น string และเก็บไว้ในตัวแปร currentblank
-            if (newGuessWord == currentblank) //ตรวจสอบว่าข้อความที่เก็บไว้ในตัวแปร NewGuessWord(คำที่ทายถูก) เท่ากับ ข้อความที่เก็บไว้ในตัวแปร currentblank(ช่องว่าง)หรือไม่
+
+
+            Console.WriteLine("\n");//เว้นบรรทัด
+            CheckResult(newGuessWord, word);//เรียกเมธอด CheckResult เพื่อตรวจสอบว่าชนะหรือยัง
+            InputLetterAlphabetFromKeyBoard(word, NewGuessWord);/*เรียกใช้ medthod ชื่อ  InputLetterAlphabetFromKeyBoard เป็น medthod 
+                                                               ไว้รับค่าอักษรที่ผู้ใช้จะกรอกมาเพื่อเล่นอีกครั้ง*/
+
+        }
+        static void CheckResult(string newGuessWord, string word)
+        {
+            if (newGuessWord == word)//ตรวจว่าข้อความในตัวแปร newGuessWord ตรงกับข้อความที่แรนด้อมไหม
             {
-                CheckWrongLetter(NewGuessWord);//ถ้าใช่ให้เรียกใช้ medthod ชื่อ CheckWrongLetter เป็น medthod ที่ไว้ใช้เมื่อตัวอักษรที่ผู้ใช้กรอกมานั้นไม่ตรงกับคำที่แรนด้อมได้เลย
+                Console.WriteLine("You win!!");//ถ้าใช่แสดงคำว่า You Win!!
             }
             else
             {
-                //ถ้าไม่เป็นไปตามเงื่อนไขไม่ต้องทำอะไร
-            }
-            Console.WriteLine("\n");//เว้นบรรทัด
-            InputLetterAlphabetFromKeyBoard(word,NewGuessWord);/*เรียกใช้ medthod ชื่อ  InputLetterAlphabetFromKeyBoard เป็น medthod 
-                                                               ไว้รับค่าอักษรที่ผู้ใช้จะกรอกมาเพื่อเล่นอีกครั้ง*/
-        }
-        static void CheckWrongLetter(char[] NewguessWord)
-        {
-
-            PrintHeaderPlayGame();//เรียกใช้ medthod ชื่อ  PrintHeaderPlayGame() เป็น medthod ที่ใช้แสดงข้อความที่บอกว่าเป็นหน้าเล่นเกม
-            PrintIncorectScore(0);//เรียกใช้ medthod ชื่อ  PrintHeaderPlayGame() เป็น medthod ที่ใช้แสดงจำนวนที่ผู้ใช้ตอบผิด
-            for (int i = 0; i < NewguessWord.Length; i++)//ใช้loop for วนจนกว่าค่า i จะเท่ากับค่าความยาวของคำตอบที่ผู้ใช้ตอบถูกครั้งล่าสุด
-            {
-                Console.Write(NewguessWord[i]);//แสดงอาร์เรย์ตัวที่ i ของตัวแปร NewguessWord
-                Console.Write(" ");//เว้นวรรค
+                //ถ้าไม่ใช่ไม่ต้องทำอะไร
             }
         }
     }
